@@ -1,0 +1,12 @@
+---
+to: lib/blocs/<%= lower %>/event.dart
+---
+
+part of 'bloc.dart';
+
+sealed class <%= proper %>Event extends Equatable {
+  const <%= proper %>Event();
+
+  @override
+  List<Object> get props => [];
+}

@@ -1,0 +1,22 @@
+---
+to: lib/blocs/<%= lower %>/state.dart
+---
+
+part of 'bloc.dart';
+
+@immutable
+class <%= proper %>State extends Equatable {
+  final <%= proper %>TestState? test;
+  const <%= proper %>State({this.test});
+
+  <%= proper %>State copyWith({<%= proper %>TestState? test}) {
+    return <%= proper %>State(test: test ?? this.test);
+  }
+
+  @override
+  List<Object?> get props => [test];
+}
+
+final class <%= proper %>Initial extends <%= proper %>State {
+  const <%= proper %>Initial() : super(test: const <%= proper %>TestState());
+}

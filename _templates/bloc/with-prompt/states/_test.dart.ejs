@@ -1,0 +1,37 @@
+---
+to: lib/blocs/<%= lower %>/states/_test.dart
+---
+
+part of '../bloc.dart';
+
+@immutable
+class <%= proper %>TestState extends Equatable {
+  static bool match(<%= proper %>State a, <%= proper %>State b) => a.test != b.test;
+
+  final String? message;
+
+  const <%= proper %>TestState({this.message});
+
+  @override
+  List<Object?> get props => [message];
+}
+
+@immutable
+class <%= proper %>TestDefault extends <%= proper %>TestState {
+  const <%= proper %>TestDefault();
+}
+
+@immutable
+class <%= proper %>TestLoading extends <%= proper %>TestState {
+  const <%= proper %>TestLoading();
+}
+
+@immutable
+class <%= proper %>TestSuccess extends <%= proper %>TestState {
+  const <%= proper %>TestSuccess();
+}
+
+@immutable
+class <%= proper %>TestFailure extends <%= proper %>TestState {
+  const <%= proper %>TestFailure({required String message}) : super(message: message);
+}
