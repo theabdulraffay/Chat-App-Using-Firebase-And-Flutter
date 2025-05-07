@@ -6,11 +6,16 @@ class _Body extends StatelessWidget {
   // final _passwordController = TextEditingController();
   late double _deviceHeight;
   late double _deviceWidth;
-  final _loginFormKEy = GlobalKey<FormState>();
+  final _loginFormKey = GlobalKey<FormState>();
+  late AuthenticationProvider _auth;
+
+  String? _email;
+  String? _password;
   @override
   Widget build(BuildContext context) {
     _deviceWidth = MediaQuery.sizeOf(context).width;
     _deviceHeight = MediaQuery.sizeOf(context).height;
+    _auth = Provider.of<AuthenticationProvider>(context);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(
@@ -42,11 +47,11 @@ class _Body extends StatelessWidget {
       name: "Login",
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
-      onPressed: () {
-        // if (_loginFormKey.currentState!.validate()) {
-        //   _loginFormKey.currentState!.save();
-        //   _auth.loginUsingEmailAndPassword(_email!, _password!);
-        // }
+      onPressed: () async {
+        if (_loginFormKey.currentState!.validate()) {
+          _loginFormKey.currentState!.save();
+          _auth.loginUsingEmailAndPassword(_email!, _password!);
+        }
       },
     );
   }
@@ -65,20 +70,24 @@ class _Body extends StatelessWidget {
     return SizedBox(
       height: _deviceHeight * 0.18,
       child: Form(
-        key: _loginFormKEy,
+        key: _loginFormKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             CustomInputFields(
-              onSaved: (val) {},
+              onSaved: (val) {
+                _email = val;
+              },
               regEx:
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: 'Email',
             ),
             CustomInputFields(
-              onSaved: (val) {},
+              onSaved: (val) {
+                _password = val;
+              },
               regEx: r".{8,}",
               hintText: 'Password',
               obscureText: true,
