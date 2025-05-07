@@ -11,10 +11,16 @@ class _BodyState extends State<_Body> {
   @override
   void initState() {
     super.initState();
+
+    _registerSerivces();
     Timer(
       const Duration(seconds: 3),
       SplashScreenService(context: context).getCurrentuser,
     );
+  }
+
+  void _registerSerivces() {
+    GetIt.instance.registerSingleton<MediaService>(MediaService());
   }
 
   @override
