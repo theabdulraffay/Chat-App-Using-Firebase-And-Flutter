@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:provider/provider.dart';
 import 'package:softec/firebase_options.dart';
+import 'package:softec/providers/authentication_provider.dart';
 import 'package:softec/router/router.dart';
 import 'package:softec/router/routes.dart';
 import 'package:softec/screens/splash/splash.dart';
@@ -32,6 +33,9 @@ class _MyAppState extends State<MyApp> {
         // BlocProvider(create: (context) => JobBloc()),
         ChangeNotifierProvider<SplashScreenStateProvider>(
           create: (context) => SplashScreenStateProvider(),
+        ),
+        ChangeNotifierProvider<AuthenticationProvider>(
+          create: (context) => AuthenticationProvider(),
         ),
       ],
       child: MaterialApp(
