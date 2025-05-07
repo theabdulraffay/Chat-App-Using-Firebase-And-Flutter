@@ -40,6 +40,12 @@ class _MyAppState extends State<MyApp> {
         navigatorObservers: [...observers, NavigationHistoryObserver()],
         title: 'Flutter Demo',
         theme: ThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
+            // selectedItemColor: Colors.white,
+            // unselectedItemColor: Colors.white54,
+          ),
+
           scaffoldBackgroundColor: Color.fromRGBO(35, 35, 49, 1),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),

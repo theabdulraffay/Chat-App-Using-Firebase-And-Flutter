@@ -11,8 +11,8 @@ class _BodyState extends State<_Body> {
   @override
   void initState() {
     super.initState();
-
     _registerSerivces();
+
     Timer(
       const Duration(seconds: 3),
       SplashScreenService(context: context).getCurrentuser,
@@ -21,6 +21,10 @@ class _BodyState extends State<_Body> {
 
   void _registerSerivces() {
     GetIt.instance.registerSingleton<MediaService>(MediaService());
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
+    );
+    GetIt.instance.registerSingleton<DatabaseService>(DatabaseService());
   }
 
   @override

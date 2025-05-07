@@ -24,7 +24,6 @@ Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
       return FadeRoute(settings: settings, child: const SignUpScreen());
     case AppRoutes.home:
       return FadeRoute(settings: settings, child: const HomeScreen());
-
     case AppRoutes.map:
       return FadeRoute(settings: settings, child: const MapsScreen());
 

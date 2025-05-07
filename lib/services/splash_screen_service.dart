@@ -11,7 +11,7 @@ class SplashScreenService {
   Future<void> getCurrentuser() async {
     final user = instance.currentUser;
     if (user != null) {
-      AppRoutes.home.pushReplace(context);
+      AppRoutes.login.pushReplace(context);
     } else {
       AppRoutes.signup.pushReplace(context);
     }

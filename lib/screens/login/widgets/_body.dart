@@ -2,46 +2,42 @@ part of '../login.dart';
 
 class _Body extends StatelessWidget {
   _Body();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  // final _emailController = TextEditingController();
+  // final _passwordController = TextEditingController();
+  late double _deviceHeight;
+  late double _deviceWidth;
   @override
   Widget build(BuildContext context) {
+    _deviceWidth = MediaQuery.sizeOf(context).width;
+    _deviceHeight = MediaQuery.sizeOf(context).height;
     return Scaffold(
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: _deviceWidth * 0.03,
+          vertical: _deviceHeight * 0.02,
+        ),
+        height: _deviceHeight * 0.98,
+        width: _deviceWidth * 0.97,
         child: Column(
-          spacing: 20,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('This is Login Screen'),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(hintText: 'Email'),
-            ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(hintText: 'Password'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                final currentContext = context;
+          children: [_pageTitle()],
+        ),
+      ),
+    );
+  }
 
-                try {
-                  FirebaseUsersServices().loginUser(
-                    emailController.text,
-                    passwordController.text,
-                  );
-                  emailController.clear();
-                  passwordController.clear();
-                  AppRoutes.home.pushReplace(currentContext);
-                } catch (e) {
-                  ScaffoldMessenger.of(
-                    currentContext,
-                  ).showSnackBar(SnackBar(content: Text(e.toString())));
-                }
-              },
-              child: const Text('Sign Up'),
-            ),
-          ],
+  Widget _pageTitle() {
+    return SizedBox(
+      // padding: const EdgeInsets.only(bottom: 20),
+      height: _deviceHeight * 0.1,
+      child: Text(
+        'Chatify',
+        style: TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
         ),
       ),
     );
