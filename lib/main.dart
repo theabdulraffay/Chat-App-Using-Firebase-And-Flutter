@@ -40,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         navigatorObservers: [...observers, NavigationHistoryObserver()],
         title: 'Flutter Demo',
         theme: ThemeData(
+          scaffoldBackgroundColor: Color.fromRGBO(35, 35, 49, 1),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         // home: DashboardScreen(),
