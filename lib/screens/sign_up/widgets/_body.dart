@@ -1,7 +1,7 @@
 part of '../sign_up.dart';
 
 class _Body extends StatefulWidget {
-  _Body();
+  const _Body();
 
   @override
   State<_Body> createState() => _BodyState();
@@ -16,13 +16,13 @@ class _BodyState extends State<_Body> {
 
   late double _deviceWidth;
 
-  late AuthenticationProvider _auth;
-  late DatabaseService _db;
-  // late CloudStorageService _cloudStorage;
+  // late AuthenticationProvider _auth;
+  // late DatabaseService _db;
+  // // late CloudStorageService _cloudStorage;
 
-  String? _email;
-  String? _password;
-  String? _name;
+  // String? _email;
+  // String? _password;
+  // String? _name;
   PlatformFile? _profileImage;
 
   final _registerFormKey = GlobalKey<FormState>();
@@ -72,6 +72,7 @@ class _BodyState extends State<_Body> {
       },
       child: () {
         if (_profileImage != null) {
+          log(_profileImage!.path!, name: "Profile Image Path");
           return RoundedImageFile(
             key: UniqueKey(),
             image: _profileImage!,
@@ -89,7 +90,7 @@ class _BodyState extends State<_Body> {
   }
 
   Widget _registerForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.35,
       child: Form(
         key: _registerFormKey,
@@ -99,7 +100,7 @@ class _BodyState extends State<_Body> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomInputFields(
-              onSaved: (_value) {
+              onSaved: (value) {
                 setState(() {
                   // _name = _value;
                 });
@@ -111,7 +112,7 @@ class _BodyState extends State<_Body> {
             CustomInputFields(
               onSaved: (value) {
                 setState(() {
-                  _email = value;
+                  // _email = value;
                 });
               },
               regEx:
@@ -122,7 +123,7 @@ class _BodyState extends State<_Body> {
             CustomInputFields(
               onSaved: (value) {
                 setState(() {
-                  _password = value;
+                  // _password = value;
                 });
               },
               regEx: r".{8,}",
