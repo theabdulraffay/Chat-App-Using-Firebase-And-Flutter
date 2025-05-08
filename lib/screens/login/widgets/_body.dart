@@ -35,7 +35,7 @@ class _Body extends StatelessWidget {
             SizedBox(height: _deviceHeight * 0.05),
             _loginButton(),
             SizedBox(height: _deviceHeight * 0.02),
-            _registerAccountLink(),
+            _registerAccountLink(context),
           ],
         ),
       ),
@@ -58,9 +58,9 @@ class _Body extends StatelessWidget {
     );
   }
 
-  Widget _registerAccountLink() {
+  Widget _registerAccountLink(context) {
     return GestureDetector(
-      // onTap: () => _navigation.navigateToRoute('/register'),
+      onTap: () => AppRoutes.signup.push(context),
       child: Text(
         'Don\'t have an account?',
         style: TextStyle(color: Colors.blueAccent),

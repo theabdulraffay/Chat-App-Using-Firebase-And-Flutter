@@ -16,6 +16,15 @@ class _BodyState extends State<_Body> {
 
   late double _deviceWidth;
 
+  late AuthenticationProvider _auth;
+  late DatabaseService _db;
+  // late CloudStorageService _cloudStorage;
+
+  String? _email;
+  String? _password;
+  String? _name;
+  PlatformFile? _profileImage;
+
   final _registerFormKey = GlobalKey<FormState>();
 
   @override
@@ -55,26 +64,26 @@ class _BodyState extends State<_Body> {
   Widget _profileImageField() {
     return GestureDetector(
       onTap: () {
-        // GetIt.instance.get<MediaService>().pickImageFromLibrary().then((_file) {
-        //   setState(() {
-        //     _profileImage = _file;
-        //   });
-        // });
+        GetIt.instance.get<MediaService>().pickImageFromLibrary().then((file) {
+          setState(() {
+            _profileImage = file;
+          });
+        });
       },
       child: () {
-        // if (_profileImage != null) {
-        //   return RoundedImageFile(
-        //     key: UniqueKey(),
-        //     image: _profileImage!,
-        //     size: _deviceHeight * 0.15,
-        //   );
-        // } else {
-        //   return RoundedImageNetwork(
-        //     key: UniqueKey(),
-        //     imagePath: "https://i.pravatar.cc/150?img=65",
-        //     size: _deviceHeight * 0.15,
-        //   );
-        // }
+        if (_profileImage != null) {
+          return RoundedImageFile(
+            key: UniqueKey(),
+            image: _profileImage!,
+            size: _deviceHeight * 0.15,
+          );
+        } else {
+          return RoundedImageNetwork(
+            key: UniqueKey(),
+            imagePath: "https://i.pravatar.cc/150?img=65",
+            size: _deviceHeight * 0.15,
+          );
+        }
       }(),
     );
   }
@@ -99,27 +108,27 @@ class _BodyState extends State<_Body> {
               hintText: "Name",
               obscureText: false,
             ),
-            // CustomTextFormField(
-            //   onSaved: (_value) {
-            //     setState(() {
-            //       _email = _value;
-            //     });
-            //   },
-            //   regEx:
-            //       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-            //   hintText: "Email",
-            //   obscureText: false,
-            // ),
-            // CustomTextFormField(
-            //   onSaved: (_value) {
-            //     setState(() {
-            //       _password = _value;
-            //     });
-            //   },
-            //   regEx: r".{8,}",
-            //   hintText: "Password",
-            //   obscureText: true,
-            // ),
+            CustomInputFields(
+              onSaved: (value) {
+                setState(() {
+                  _email = value;
+                });
+              },
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: "Email",
+              obscureText: false,
+            ),
+            CustomInputFields(
+              onSaved: (value) {
+                setState(() {
+                  _password = value;
+                });
+              },
+              regEx: r".{8,}",
+              hintText: "Password",
+              obscureText: true,
+            ),
           ],
         ),
       ),
