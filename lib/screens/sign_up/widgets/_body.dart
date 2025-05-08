@@ -20,9 +20,9 @@ class _BodyState extends State<_Body> {
   // late DatabaseService _db;
   // // late CloudStorageService _cloudStorage;
 
-  // String? _email;
-  // String? _password;
-  // String? _name;
+  String? _email;
+  String? _password;
+  String? _name;
   PlatformFile? _profileImage;
 
   final _registerFormKey = GlobalKey<FormState>();
@@ -101,9 +101,7 @@ class _BodyState extends State<_Body> {
           children: [
             CustomInputFields(
               onSaved: (value) {
-                setState(() {
-                  // _name = _value;
-                });
+                _name = value;
               },
               regEx: r'.{8,}',
               hintText: "Name",
@@ -111,9 +109,7 @@ class _BodyState extends State<_Body> {
             ),
             CustomInputFields(
               onSaved: (value) {
-                setState(() {
-                  // _email = value;
-                });
+                _email = value;
               },
               regEx:
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
@@ -122,9 +118,7 @@ class _BodyState extends State<_Body> {
             ),
             CustomInputFields(
               onSaved: (value) {
-                setState(() {
-                  // _password = value;
-                });
+                _password = value;
               },
               regEx: r".{8,}",
               hintText: "Password",
