@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:softec/configs/configs.dart';
 import 'package:softec/router/routes.dart';
 import 'package:softec/services/firebase_users_services.dart';
+import 'package:softec/widgets/custom_input_fields.dart';
+import 'package:softec/widgets/round_button.dart';
 part 'widgets/_body.dart';
 part '_state.dart';
 

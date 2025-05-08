@@ -50,7 +50,9 @@ class _Body extends StatelessWidget {
       onPressed: () async {
         if (_loginFormKey.currentState!.validate()) {
           _loginFormKey.currentState!.save();
-          _auth.loginUsingEmailAndPassword(_email!, _password!);
+          _auth.loginUsingEmailAndPassword(_email!, _password!).then((_) {
+            log("User logged in successfully", name: "Login");
+          });
         }
       },
     );

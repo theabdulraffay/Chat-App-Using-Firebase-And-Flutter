@@ -9,4 +9,18 @@ class DatabaseService {
   DatabaseService() {
     // Initialize the database service if needed
   }
+
+  Future<DocumentSnapshot> getUser(String uid) async {
+    return await _db.collection(USER_COLLECTION).doc(uid).get();
+  }
+
+  Future<void> updateUserLastSeenTime(String uis) async {
+    try {
+      await _db.collection(USER_COLLECTION).doc(uis).update({
+        'last_active': DateTime.now(),
+      });
+    } catch (e) {
+      print("Error updating last seen time: $e");
+    }
+  }
 }
