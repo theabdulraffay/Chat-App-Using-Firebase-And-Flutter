@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
 import 'package:provider/provider.dart';
 import 'package:softec/firebase_options.dart';
@@ -49,7 +48,15 @@ class _MyAppState extends State<MyApp> {
             // selectedItemColor: Colors.white,
             // unselectedItemColor: Colors.white54,
           ),
-
+          appBarTheme: AppBarTheme(
+            backgroundColor: const Color.fromRGBO(30, 29, 37, 1.0),
+            titleTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+            iconTheme: const IconThemeData(color: Colors.white),
+          ),
           scaffoldBackgroundColor: Color.fromRGBO(35, 35, 49, 1),
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),

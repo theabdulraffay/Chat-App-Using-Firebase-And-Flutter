@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:softec/configs/configs.dart';
 import 'package:softec/router/routes.dart';
+import 'package:softec/screens/chats/chats.dart';
+import 'package:softec/screens/users/users.dart';
 import 'package:softec/services/firebase_users_services.dart';
 part 'widgets/_body.dart';
 part '_state.dart';

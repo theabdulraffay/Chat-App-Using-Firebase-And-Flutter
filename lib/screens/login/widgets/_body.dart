@@ -33,7 +33,7 @@ class _Body extends StatelessWidget {
             SizedBox(height: _deviceHeight * 0.04),
             _loginForm(),
             SizedBox(height: _deviceHeight * 0.05),
-            _loginButton(),
+            _loginButton(context),
             SizedBox(height: _deviceHeight * 0.02),
             _registerAccountLink(context),
           ],
@@ -42,7 +42,7 @@ class _Body extends StatelessWidget {
     );
   }
 
-  Widget _loginButton() {
+  Widget _loginButton(context) {
     return RoundedButton(
       name: "Login",
       height: _deviceHeight * 0.065,
@@ -52,6 +52,7 @@ class _Body extends StatelessWidget {
           _loginFormKey.currentState!.save();
           _auth.loginUsingEmailAndPassword(_email!, _password!).then((_) {
             log("User logged in successfully", name: "Login");
+            AppRoutes.home.pushReplace(context);
           });
         }
       },

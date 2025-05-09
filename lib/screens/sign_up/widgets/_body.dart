@@ -155,6 +155,7 @@ class _BodyState extends State<_Body> {
             image: imageURL,
             name: _name,
           );
+          AppRoutes.home.pushReplace(context);
           // await _auth.logout();
 
           // await _auth.loginUsingEmailAndPassword(_email!, _password!);
