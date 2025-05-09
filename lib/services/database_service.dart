@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 const String USER_COLLECTION = 'Users';
@@ -20,7 +22,25 @@ class DatabaseService {
         'last_active': DateTime.now(),
       });
     } catch (e) {
-      print("Error updating last seen time: $e");
+      log("Error updating last seen time: $e");
+    }
+  }
+
+  Future<void> createUser({
+    String? uid,
+    String? email,
+    String? image,
+    String? name,
+  }) async {
+    try {
+      await _db.collection(USER_COLLECTION).doc(uid).set({
+        'email': email,
+        'image': image,
+        'name': name,
+        'last_active': DateTime.now(),
+      });
+    } catch (e) {
+      log("Error updating last seen time: $e");
     }
   }
 }

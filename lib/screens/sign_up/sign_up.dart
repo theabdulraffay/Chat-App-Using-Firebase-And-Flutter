@@ -10,6 +10,7 @@ import 'package:softec/router/routes.dart';
 import 'package:softec/services/database_service.dart';
 import 'package:softec/services/firebase_users_services.dart';
 import 'package:softec/services/media_service.dart';
+import 'package:softec/services/upload_image_service.dart';
 import 'package:softec/widgets/custom_input_fields.dart';
 import 'package:softec/widgets/round_button.dart';
 import 'package:softec/widgets/rounnded_image.dart';

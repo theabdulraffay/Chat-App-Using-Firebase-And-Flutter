@@ -25,6 +25,7 @@ class _BodyState extends State<_Body> {
       CloudStorageService(),
     );
     GetIt.instance.registerSingleton<DatabaseService>(DatabaseService());
+    GetIt.instance.registerSingleton<UploadImageService>(UploadImageService());
   }
 
   @override

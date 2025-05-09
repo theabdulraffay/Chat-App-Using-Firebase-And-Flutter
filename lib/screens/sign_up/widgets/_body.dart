@@ -16,9 +16,9 @@ class _BodyState extends State<_Body> {
 
   late double _deviceWidth;
 
-  // late AuthenticationProvider _auth;
-  // late DatabaseService _db;
-  // // late CloudStorageService _cloudStorage;
+  late AuthenticationProvider _auth;
+  late DatabaseService _db;
+  late UploadImageService _cloudStorage;
 
   String? _email;
   String? _password;
@@ -31,6 +31,9 @@ class _BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     _deviceWidth = MediaQuery.sizeOf(context).width;
     _deviceHeight = MediaQuery.sizeOf(context).height;
+    _auth = Provider.of<AuthenticationProvider>(context);
+    _db = GetIt.instance.get<DatabaseService>();
+    _cloudStorage = GetIt.instance.get<UploadImageService>();
     return _buildUI();
   }
 
@@ -136,21 +139,26 @@ class _BodyState extends State<_Body> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        // if (_registerFormKey.currentState!.validate() &&
-        //     _profileImage != null) {
-        //   _registerFormKey.currentState!.save();
-        //   String? _uid = await _auth.registerUserUsingEmailAndPassword(
-        //     _email!,
-        //     _password!,
-        //   );
-        //   String? _imageURL = await _cloudStorage.saveUserImageToStorage(
-        //     _uid!,
-        //     _profileImage!,
-        //   );
-        //   await _db.createUser(_uid, _email!, _name!, _imageURL!);
-        //   await _auth.logout();
-        //   await _auth.loginUsingEmailAndPassword(_email!, _password!);
-        // }
+        if (_registerFormKey.currentState!.validate() &&
+            _profileImage != null) {
+          _registerFormKey.currentState!.save();
+          String? _uid = await _auth.registerUserUsingEmailAndPassword(
+            _email!,
+            _password!,
+          );
+          String? imageURL = await _cloudStorage.uploadImage(
+            _profileImage!.path!,
+          );
+          await _db.createUser(
+            uid: _uid,
+            email: _email,
+            image: imageURL,
+            name: _name,
+          );
+          // await _auth.logout();
+
+          // await _auth.loginUsingEmailAndPassword(_email!, _password!);
+        }
       },
     );
   }

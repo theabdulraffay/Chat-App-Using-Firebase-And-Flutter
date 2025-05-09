@@ -7,6 +7,7 @@ import 'package:softec/services/cloud_storage_service.dart';
 import 'package:softec/services/database_service.dart';
 import 'package:softec/services/media_service.dart';
 import 'package:softec/services/splash_screen_service.dart';
+import 'package:softec/services/upload_image_service.dart';
 part 'widgets/_body.dart';
 part '_state.dart';
 
