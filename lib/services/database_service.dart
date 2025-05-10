@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 const String USER_COLLECTION = 'Users';
 const String CHAT_COLLECTION = 'Chats';
-const String MESSAGES_COLLECTION = 'Messages';
+const String MESSAGES_COLLECTION = 'messages';
 
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -19,7 +19,7 @@ class DatabaseService {
   Future<void> updateUserLastSeenTime(String uis) async {
     try {
       await _db.collection(USER_COLLECTION).doc(uis).update({
-        'last_active': DateTime.now(),
+        'last_active': DateTime.now().toUtc(),
       });
     } catch (e) {
       log("Error updating last seen time: $e");
@@ -42,5 +42,24 @@ class DatabaseService {
     } catch (e) {
       log("Error updating last seen time: $e");
     }
+  }
+
+  // This function will retrieve chats from the database
+  Stream<QuerySnapshot> getChatsForUser(String uid) {
+    return _db
+        .collection(CHAT_COLLECTION)
+        .where('members', arrayContains: uid)
+        .snapshots();
+  }
+
+  // This function will retrieve last messages from the database
+  Future<QuerySnapshot> getLastMessageForChat(String id) {
+    return _db
+        .collection(CHAT_COLLECTION)
+        .doc(id)
+        .collection(MESSAGES_COLLECTION)
+        .orderBy('sent_time', descending: true)
+        .limit(1)
+        .get();
   }
 }

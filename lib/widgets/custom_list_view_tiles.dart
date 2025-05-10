@@ -15,7 +15,7 @@ class CustomListViewTile extends StatelessWidget {
   final String imagePath;
   final bool isActive;
   final bool isSelected;
-  final Function onTap;
+  final VoidCallback onTap;
 
   const CustomListViewTile({
     super.key,
@@ -32,7 +32,7 @@ class CustomListViewTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       trailing: isSelected ? Icon(Icons.check, color: Colors.white) : null,
-      onTap: () => onTap(),
+      onTap: onTap,
       minVerticalPadding: height * 0.20,
       leading: RoundedImageNetworkWithStatusIndicator(
         key: UniqueKey(),
@@ -69,7 +69,8 @@ class CustomListViewTileWithActivity extends StatelessWidget {
   final bool isActivity;
   final Function onTap;
 
-  CustomListViewTileWithActivity({
+  const CustomListViewTileWithActivity({
+    super.key,
     required this.height,
     required this.title,
     required this.subtitle,
@@ -130,7 +131,8 @@ class CustomChatListViewTile extends StatelessWidget {
   final ChatMessage message;
   final ChatUser sender;
 
-  CustomChatListViewTile({
+  const CustomChatListViewTile({
+    super.key,
     required this.width,
     required this.deviceHeight,
     required this.isOwnMessage,
