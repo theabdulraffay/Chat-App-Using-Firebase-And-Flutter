@@ -43,21 +43,21 @@ class _Body extends StatelessWidget {
         body: Builder(
           builder: (context) {
             _chatsPageProvider = context.watch<ChatsPageProvider>();
-            return _chatList();
+            return _chatList(context);
           },
         ),
       ),
     );
   }
 
-  Widget _chatList() {
+  Widget _chatList(BuildContext context) {
     List<Chat>? chats = _chatsPageProvider.chats;
     return (() {
       if (chats.isNotEmpty) {
         return ListView.builder(
           itemCount: chats.length,
           itemBuilder: (context, index) {
-            return _chatTile(chats[index]);
+            return _chatTile(chats[index], context);
           },
         );
       } else {
@@ -66,7 +66,7 @@ class _Body extends StatelessWidget {
     })();
   }
 
-  Widget _chatTile(Chat _chat) {
+  Widget _chatTile(Chat _chat, BuildContext context) {
     List<ChatUser> _recepients = _chat.recepients();
     bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
     String _subtitleText = "";
@@ -84,7 +84,7 @@ class _Body extends StatelessWidget {
       isActive: _isActive,
       isActivity: _chat.activity,
       onTap: () {
-        // _navigation.navigateToPage(ChatPage(chat: _chat));
+        AppRoutes.chat.push(context);
       },
     );
   }
