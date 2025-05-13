@@ -12,7 +12,8 @@ class TextMessageBubble extends StatelessWidget {
   final double height;
   final double width;
 
-  TextMessageBubble({
+  const TextMessageBubble({
+    super.key,
     required this.isOwnMessage,
     required this.message,
     required this.height,
@@ -21,7 +22,7 @@ class TextMessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> _colorScheme =
+    List<Color> colorScheme =
         isOwnMessage
             ? [
               Color.fromRGBO(0, 136, 249, 1.0),
@@ -38,7 +39,7 @@ class TextMessageBubble extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
-          colors: _colorScheme,
+          colors: colorScheme,
           stops: [0.30, 0.70],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -66,7 +67,8 @@ class ImageMessageBubble extends StatelessWidget {
   final double height;
   final double width;
 
-  ImageMessageBubble({
+  const ImageMessageBubble({
+    super.key,
     required this.isOwnMessage,
     required this.message,
     required this.height,
@@ -75,7 +77,7 @@ class ImageMessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> _colorScheme =
+    List<Color> colorScheme =
         isOwnMessage
             ? [
               Color.fromRGBO(0, 136, 249, 1.0),
@@ -85,7 +87,7 @@ class ImageMessageBubble extends StatelessWidget {
               Color.fromRGBO(51, 49, 68, 1.0),
               Color.fromRGBO(51, 49, 68, 1.0),
             ];
-    DecorationImage _image = DecorationImage(
+    DecorationImage image = DecorationImage(
       image: NetworkImage(message.content),
       fit: BoxFit.cover,
     );
@@ -97,7 +99,7 @@ class ImageMessageBubble extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
-          colors: _colorScheme,
+          colors: colorScheme,
           stops: [0.30, 0.70],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
@@ -113,7 +115,7 @@ class ImageMessageBubble extends StatelessWidget {
             width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              image: _image,
+              image: image,
             ),
           ),
           SizedBox(height: height * 0.02),

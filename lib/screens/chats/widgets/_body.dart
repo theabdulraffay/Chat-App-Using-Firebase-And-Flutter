@@ -66,25 +66,28 @@ class _Body extends StatelessWidget {
     })();
   }
 
-  Widget _chatTile(Chat _chat, BuildContext context) {
-    List<ChatUser> _recepients = _chat.recepients();
-    bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
-    String _subtitleText = "";
-    if (_chat.messages.isNotEmpty) {
-      _subtitleText =
-          _chat.messages.first.type != MessageType.text
+  Widget _chatTile(Chat chat, BuildContext context) {
+    List<ChatUser> recepients = chat.recepients();
+    bool isActive = recepients.any((d) => d.wasRecentlyActive());
+    String subtitleText = "";
+    if (chat.messages.isNotEmpty) {
+      subtitleText =
+          chat.messages.first.type != MessageType.text
               ? "Media Attachment"
-              : _chat.messages.first.content;
+              : chat.messages.first.content;
     }
     return CustomListViewTileWithActivity(
       height: _deviceHeight * 0.10,
-      title: _chat.title(),
-      subtitle: _subtitleText,
-      imagePath: _chat.imageURL(),
-      isActive: _isActive,
-      isActivity: _chat.activity,
+      title: chat.title(),
+      subtitle: subtitleText,
+      imagePath: chat.imageURL(),
+      isActive: isActive,
+      isActivity: chat.activity,
       onTap: () {
-        AppRoutes.chat.push(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ChatScreen(chat: chat)),
+        );
       },
     );
   }
