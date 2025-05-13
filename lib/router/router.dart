@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:softec/router/routes.dart';
 import 'package:softec/screens/home/home.dart';
 import 'package:softec/screens/login/login.dart';
-import 'package:softec/screens/maps/maps.dart';
 import 'package:softec/screens/sign_up/sign_up.dart';
 import 'package:softec/screens/splash/splash.dart';
 
@@ -11,7 +10,6 @@ final Map<String, Widget Function(dynamic)> appRoutes = {
   AppRoutes.home: (_) => const HomeScreen(),
   AppRoutes.login: (_) => const LoginScreen(),
   AppRoutes.signup: (_) => const SignUpScreen(),
-  AppRoutes.map: (_) => const MapsScreen(),
 };
 
 Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
@@ -24,8 +22,6 @@ Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
       return FadeRoute(settings: settings, child: const SignUpScreen());
     case AppRoutes.home:
       return FadeRoute(settings: settings, child: const HomeScreen());
-    case AppRoutes.map:
-      return FadeRoute(settings: settings, child: const MapsScreen());
 
     default:
       return null;
